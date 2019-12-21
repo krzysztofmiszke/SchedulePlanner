@@ -1,3 +1,15 @@
+/* USED COLORS
+#DBEAF1
+#AED3E5
+#2787B7
+#035D8F
+#024669 
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
 .App {
   text-align: center;
 }
@@ -36,3 +48,108 @@
     transform: rotate(360deg);
   }
 }
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #035D8F;
+  color: white;
+  width: 100%;
+  height: 70px;
+  font-family: Helvetica;
+  font-size: 20px;
+  font-weight: 700; 
+}
+
+.Logo {
+  display: flex;
+  margin-left: 40px;
+}
+
+.Schedule {
+  color: white;
+}
+
+.Planner {
+  font-weight: 100;
+  color: #DBEAF1;
+}
+
+.Icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 70px;
+  background-color: #2787B7;
+  color: white;
+}
+
+.Icons > div {
+  margin-left: 15px;
+  
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 50px;
+  background-color: #035D8F;
+  color: white;
+}
+
+.Copyrights {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.Author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.month {
+  width: 100vw;
+  height: 50px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 30px;
+  background-color: #2787B7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Cell-today-281 {
+  background-color: #035D8F !important;
+}
+
+#root > div.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded > div > div.MuiToolbar-root.MuiToolbar-regular.Toolbar-toolbar-66.MuiToolbar-gutters > div.RootBase-root-71 > button.MuiButtonBase-root.MuiButton-root.MuiButton-text.OpenButton-textButton-94 {
+  font-weight: 700;
+  color: white;
+}
+
+#root > div.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded > div > div:nth-child(3) > div > div.MuiDialog-container.MuiDialog-scrollPaper > div > div > div.MuiDialogActions-root.MuiDialogActions-spacing > button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary {
+  color: #035D8F;
+}
+
+#root > div.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded > div > div.MuiToolbar-root.MuiToolbar-regular.Toolbar-toolbar-66.MuiToolbar-gutters {
+  background-color: #2787B7;
+}
+
+#root > div.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded > div > div.MuiToolbar-root.MuiToolbar-regular.Toolbar-toolbar-66.MuiToolbar-gutters > div.RootBase-root-71 > button:nth-child(2) > span.MuiIconButton-label > svg {
+  color: white;
+}
+
+#root > div.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded > div > div.MuiToolbar-root.MuiToolbar-regular.Toolbar-toolbar-66.MuiToolbar-gutters > div.RootBase-root-71 > button:nth-child(1) > span.MuiIconButton-label > svg {
+  color: white;
+}
+
