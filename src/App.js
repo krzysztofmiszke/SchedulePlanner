@@ -68,9 +68,8 @@ import {
   AllDayPanel,
   ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import { appointments } from './data';
 import Footer from './components/footer/Footer';
-import CurrentMonth from './components/header/CurrentMonth';
+// import CurrentMonth from './components/header/CurrentMonth';
 
 const today = new Date();
 const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -79,7 +78,7 @@ export default class SchedulePlanner extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: appointments,
+      data: [],
       // currentDate: '2018-06-27',
       currentDate: date,
 
@@ -89,40 +88,62 @@ export default class SchedulePlanner extends React.PureComponent {
     };
     
     this.currentDateChange = (currentDate) => { this.setState({ currentDate }); };
-    this.commitChanges = this.commitChanges.bind(this);
-    this.changeAddedAppointment = this.changeAddedAppointment.bind(this);
-    this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
-    this.changeEditingAppointmentId = this.changeEditingAppointmentId.bind(this);
   }
 
-  changeAddedAppointment(addedAppointment) {
+  componentDidMount() {
+    fetch('http://localhost:3001/appointment')
+      .then(res => res.json())
+      .then(data => this.setState({ data }))
+  }
+
+  onCommitChanges = (addedAppointment) => {
+    console.log(addedAppointment)
+    
+    this.setState({ addedAppointment })
+  }
+
+  changeAddedAppointment = (addedAppointment) => {
     this.setState({ addedAppointment });
   }
 
-  changeAppointmentChanges(appointmentChanges) {
+  changeAppointmentChanges = (appointmentChanges) => {
     this.setState({ appointmentChanges });
   }
 
-  changeEditingAppointmentId(editingAppointmentId) {
+  changeEditingAppointmentId = (editingAppointmentId) => {
     this.setState({ editingAppointmentId });
   }
 
-  commitChanges({ added, changed, deleted }) {
-    this.setState((state) => {
-      let { data } = state;
-      if (added) {
-        const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-        data = [...data, { id: startingAddedId, ...added }];
-      }
-      if (changed) {
-        data = data.map(appointment => (
-          changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
-      }
-      if (deleted !== undefined) {
-        data = data.filter(appointment => appointment.id !== deleted);
-      }
-      return { data };
-    });
+  commitChanges = ({ added, changed, deleted }) => {
+    console.log(this.state.data)
+    if (added) {
+      fetch('http://localhost:3001/appointment', {
+        method: 'POST',
+        body: JSON.stringify(added),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then(res => this.setState(prevState => ({
+        data: [
+          ...prevState.data,
+          res
+        ]
+      })))
+    }
+    
+    // this.setState((state) => {
+    //   let { data } = state;
+    //   if (changed) {
+    //     data = data.map(appointment => (
+    //       changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
+    //   }
+    //   if (deleted !== undefined) {
+    //     data = data.filter(appointment => appointment.id !== deleted);
+    //   }
+    //   return { data };
+    // });
   }
 
   render() {
@@ -133,7 +154,7 @@ export default class SchedulePlanner extends React.PureComponent {
     return (
       <>
       <Header />
-      <CurrentMonth />
+      {/* <CurrentMonth /> */}
         <Paper>
           <Scheduler
             data={data}
