@@ -1,3 +1,6 @@
+1. Run json server via: json-server --watch database.json --port 3001,
+2. Run app on port 3000: npm run start
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
